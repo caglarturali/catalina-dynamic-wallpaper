@@ -16,9 +16,11 @@ cp -r CatalinaDynamic $_THEMES_DIR
 # Copy scripts
 cp -r bin ${HOME}
 chmod +x ${HOME}/bin/*
+
 # Create symlink under autostart-scripts.
 ln -sf ${HOME}/bin/catalina_dynamic $_AUTOSTART_DIR
+
 # Run for the first time.
-${HOME}/bin/catalina_dynamic &
+$_AUTOSTART_DIR/catalina_dynamic &
 
 echo "Installation complete."

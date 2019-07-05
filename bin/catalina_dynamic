@@ -27,5 +27,5 @@ while true; do
         set_wallpaper $_hour
     fi
     _old_hour=$_hour
-    sleep 15m
+    sleep 1m
 done

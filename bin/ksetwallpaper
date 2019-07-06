@@ -31,7 +31,8 @@ for (i=0;i<Desktops.length;i++)
     d.writeConfig('$write', 'file://${full_image_path}')
 }"
 
+# Set wallpaper.
 qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "${wallpaper_set_script}"
 
-# Optional, change lockscreen if you want.
+# Change lockscreen background, too.
 kwriteconfig5 --file kscreenlockerrc --group Greeter --group Wallpaper --group org.kde.image --group General --key Image "file://$full_image_path"

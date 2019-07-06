@@ -1,6 +1,6 @@
 # Catalina Dynamic Wallpaper
 
-![](screenshot.gif)
+![](screenshots/screenshot.gif)
 
 # Installation
 

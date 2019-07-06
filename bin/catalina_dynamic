@@ -4,7 +4,7 @@
 # Catalina Dynamic Wallpaper autostart script.
 ##
 
-# Base directory.
+# Base directory for images.
 _base_dir="${HOME}/.local/share/wallpapers/CatalinaDynamic/contents"
 
 # Returns hour of the day in two-digit format.

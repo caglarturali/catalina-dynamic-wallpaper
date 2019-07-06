@@ -3,6 +3,7 @@ set -ueo pipefail
 
 ###
 # Catalina Dynamic Wallpaper control script.
+# https://github.com/caglarturali/catalina-dynamic-wallpaper-kde
 ##
 
 _THEMES_DIR="${HOME}/.local/share/wallpapers"

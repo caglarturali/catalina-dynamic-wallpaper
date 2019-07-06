@@ -6,7 +6,6 @@ set -ueo pipefail
 ##
 
 _THEMES_DIR="${HOME}/.local/share/wallpapers"
-_AUTOSTART_DIR="${HOME}/.config/autostart-scripts"
 
 echo "Installing Catalina Dynamic Wallpaper..."
 

@@ -20,4 +20,4 @@ chmod +x ${HOME}/bin/*
 # Start it.
 ${HOME}/bin/catalina --start
 
-echo -e "Installation complete. Run \e[1m~/bin/catalina --help\e[0m for more information."
+echo -e "Installation complete. See \e[1m~/bin/catalina --help\e[0m for more information."

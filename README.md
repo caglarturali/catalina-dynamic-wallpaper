@@ -5,8 +5,8 @@
 # Installation
 
 ```bash
-git clone https://github.com/caglarturali/catalina-dynamic-wallpaper.git
-cd catalina-dynamic-wallpaper
+git clone https://github.com/caglarturali/catalina-dynamic-wallpaper-kde.git
+cd catalina-dynamic-wallpaper-kde
 chmod +x install.sh
 ./install.sh
 ```

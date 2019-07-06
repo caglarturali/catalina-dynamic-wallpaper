@@ -29,10 +29,10 @@ start () {
 
 stop () {
     # Stop process.
-    killall catalina_dynamic
+    ps -C catalina_dynamic >/dev/null && killall catalina_dynamic
     
     # Remove symlink.
-    rm $_AUTOSTART_DIR/catalina_dynamic
+    rm -f $_AUTOSTART_DIR/catalina_dynamic
     
     echo "Dynamic wallpaper stopped. You can set your own wallpaper now."
 }

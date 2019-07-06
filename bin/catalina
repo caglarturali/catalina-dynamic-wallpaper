@@ -1,0 +1,73 @@
+#!/bin/bash
+set -ueo pipefail
+
+###
+# Catalina Dynamic Wallpaper control script.
+##
+
+_THEMES_DIR="${HOME}/.local/share/wallpapers"
+_AUTOSTART_DIR="${HOME}/.config/autostart-scripts"
+
+usage() {
+    printf "%s\n" "Usage: $0 [OPTIONS...]"
+    printf "\n%s\n" "OPTIONS:"
+    printf "  %-25s%s\n" "-s, --start" "Start dynamic wallpaper."
+    printf "  %-25s%s\n" "-p, --stop" "Stop dynamic wallpaper."
+    printf "  %-25s%s\n" "-u, --uninstall" "Uninstall dynamic wallpaper. Removes all related files."
+    printf "  %-25s%s\n" "-h, --help" "Show this help."
+}
+
+start () {
+    # Create a symlink under autostart-scripts.
+    ln -sf ${HOME}/bin/catalina_dynamic $_AUTOSTART_DIR
+    
+    # Run for the first time.
+    $_AUTOSTART_DIR/catalina_dynamic &
+    
+    echo "Dynamic wallpaper started."
+}
+
+stop () {
+    # Stop process.
+    killall catalina_dynamic
+    
+    # Remove symlink.
+    rm $_AUTOSTART_DIR/catalina_dynamic
+    
+    echo "Dynamic wallpaper stopped. You can set your own wallpaper now."
+}
+
+uninstall () {
+    stop
+    rm -r $_THEMES_DIR/CatalinaDynamic
+    rm ${HOME}/bin/catalina
+    rm ${HOME}/bin/catalina_dynamic
+    # Leave ksetwallpaper.
+    echo "Dynamic wallpaper removed. Are you happy now? :("
+}
+
+while [[ $# -gt 0 ]]; do
+    case "${1}" in
+        -s|--start)
+            ps -C catalina_dynamic >/dev/null && echo "Already running." || start
+            exit 0
+        ;;
+        -p|--stop)
+            stop
+            exit 0
+        ;;
+        -u|--uninstall)
+            uninstall
+            exit 0
+        ;;
+        -h|--help)
+            usage
+            exit 0
+        ;;
+        *)
+            echo "ERROR: Unrecognized installation option '$1'."
+            echo "Try '$0 --help' for more information."
+            exit 1
+        ;;
+    esac
+done

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ueo pipefail
 
 ###
 # Installs Catalina Dynamic Wallpaper.
@@ -17,10 +18,7 @@ cp -r CatalinaDynamic $_THEMES_DIR
 cp -r bin ${HOME}
 chmod +x ${HOME}/bin/*
 
-# Create symlink under autostart-scripts.
-ln -sf ${HOME}/bin/catalina_dynamic $_AUTOSTART_DIR
-
-# Run for the first time.
-$_AUTOSTART_DIR/catalina_dynamic &
+# Start it.
+${HOME}/bin/catalina --start
 
 echo "Installation complete."

@@ -2,7 +2,7 @@
 
 ![](screenshots/screenshot.gif)
 
-# Installation
+## Installation
 
 ```bash
 git clone https://github.com/caglarturali/catalina-dynamic-wallpaper-kde.git

@@ -18,6 +18,9 @@ usage() {
 }
 
 start () {
+    # Create autostart-scripts dir if not already exists.
+    ls $_AUTOSTART_DIR 2> /dev/null || mkdir -p $_AUTOSTART_DIR
+    
     # Create a symlink under autostart-scripts.
     ln -sf ${HOME}/bin/catalina_dynamic $_AUTOSTART_DIR
     

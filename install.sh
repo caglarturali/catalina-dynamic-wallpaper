@@ -10,7 +10,7 @@ _THEMES_DIR="${HOME}/.local/share/wallpapers"
 echo "Installing Catalina Dynamic Wallpaper..."
 
 # Copy theme.
-mkdir -p $_THEMES_DIR
+ls $_THEMES_DIR 2> /dev/null || mkdir -p $_THEMES_DIR
 cp -r CatalinaDynamic $_THEMES_DIR
 
 # Copy scripts

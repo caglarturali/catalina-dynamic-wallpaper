@@ -1,6 +1,6 @@
 ## Catalina Dynamic Wallpaper
 
-Simple, time-based, macOS style dynamic wallpaper that morphs between the dark and light versions of macOS Catalina's default wallpapers. It also sets the lock screen background to the same image as the desktop background for a consistent look. Designed to be used with [KDEasyMc](https://github.com/caglarturali/KDEasyMc).
+Simple, time-based, macOS style dynamic wallpaper that transitions between the dark and light versions of macOS Catalina's default wallpapers. It also sets the lock screen background to the same image as the desktop background for a consistent look. Designed to be used with [KDEasyMc](https://github.com/caglarturali/KDEasyMc).
 
 ### Screenshot
 

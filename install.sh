@@ -14,8 +14,8 @@ ls $_THEMES_DIR 2> /dev/null || mkdir -p $_THEMES_DIR
 cp -r CatalinaDynamic $_THEMES_DIR
 
 # Copy scripts
-cp -r bin ${HOME}
-chmod +x ${HOME}/bin/*
+chmod +x ./bin/*
+cp -r ./bin ${HOME}
 
 # Start it.
 ${HOME}/bin/catalina --start

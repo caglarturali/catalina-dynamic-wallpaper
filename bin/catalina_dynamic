@@ -8,24 +8,11 @@
 # Base directory for images.
 _base_dir="${HOME}/.local/share/wallpapers/CatalinaDynamic/contents"
 
-# Returns hour of the day in two-digit format.
-get_hour () {
-    echo $(date +%H)
-}
-
-# Sets wallpaper for the given hour.
-set_wallpaper () {
-    _img_path="$_base_dir/images/3840x3840.jpg"
-    cp "$_base_dir/images/hourly/$1.jpg" $_img_path
-    cp "$_img_path" "$_base_dir/screenshot.jpg"
-    ~/bin/ksetwallpaper $_img_path
-}
-
 # Keep looping.
 while true; do
-    _hour=$(get_hour)
+    _hour=$(date +%H)
     if [[ "$_old_hour" != "$_hour" ]]; then
-        set_wallpaper $_hour
+        ~/bin/ksetwallpaper "$_base_dir/images/hourly/$_hour.jpg"
     fi
     _old_hour=$_hour
     sleep 1m

@@ -13,7 +13,7 @@ while true; do
     _hour=$(date +%H)
     if [[ "$_old_hour" != "$_hour" ]]; then
         ~/bin/ksetwallpaper "$_base_dir/images/hourly/$_hour.jpg"
-        ln -fs "$_base_dir/images/hourly/$_hour.jpg" "$_base_dir/screenshot.jpg"
+        ln -fs "$_base_dir/images/hourly/$_hour.jpg" "$_base_dir/images/3840x3840.jpg"
     fi
     _old_hour=$_hour
     sleep 1m

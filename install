@@ -17,41 +17,38 @@ usage() {
     printf "  %-25s%s\n" "-h, --help" "Show this help."
 }
 
-install_base() {
-    echo "Installing Catalina Dynamic Wallpaper..."
+install_wallpaper() {
+    selected_de=$1
+    echo "Installing Catalina Dynamic Wallpaper (${selected_de})..."
     
     # Copy theme.
     [ ! -d ${THEMES_DIR} ] && mkdir -p ${THEMES_DIR}
     cp -fr CatalinaDynamic ${THEMES_DIR}
     
+    # Copy bin/catalina and bin/catalina_dynamic.
     [ ! -d ${BIN_DIR} ] && mkdir -p ${BIN_DIR}
     chmod +x ./bin/*
     cp -f ./bin/catalina* ${BIN_DIR}
-}
-
-install_kde() {
-    cp -f ./bin/setwallpaper_kde ${BIN_DIR}/setwallpaper
-}
-
-install_dde() {
-    cp -f ./bin/setwallpaper_dde ${BIN_DIR}/setwallpaper
     
-    # Create autostart shortcut.
-    echo "[Desktop Entry]" >                                                              ${AUTOSTART_DIR}/catalina.desktop
-    echo "Encoding=UTF-8" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
-    echo "Type=Application" >>                                                            ${AUTOSTART_DIR}/catalina.desktop
-    echo "Name=Catalina" >>                                                               ${AUTOSTART_DIR}/catalina.desktop
-    echo "Comment=Catalina Dynamic Wallpaper" >>                                          ${AUTOSTART_DIR}/catalina.desktop
-    echo "Exec=/home/${USER}/.config/autostart-scripts/catalina_dynamic" >>               ${AUTOSTART_DIR}/catalina.desktop
-    echo "Icon=wallpaper" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
-    echo "Terminal=false" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
-    echo "Hidden=false" >>                                                                ${AUTOSTART_DIR}/catalina.desktop
-    echo "NoDisplay=true" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
-    echo "StartupNotify=false" >>                                                         ${AUTOSTART_DIR}/catalina.desktop
-    echo "X-GNOME-Autostart-enabled=true" >>                                              ${AUTOSTART_DIR}/catalina.desktop
-}
-
-install_complete() {
+    # Copy corresponding setwallpaper based on selected DE.
+    cp -f ./bin/setwallpaper_${selected_de} ${BIN_DIR}/setwallpaper
+    
+    # Create autostart shortcut on DDE.
+    if [[ "$selected_de" == "dde" ]]; then
+        echo "[Desktop Entry]" >                                                              ${AUTOSTART_DIR}/catalina.desktop
+        echo "Encoding=UTF-8" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
+        echo "Type=Application" >>                                                            ${AUTOSTART_DIR}/catalina.desktop
+        echo "Name=Catalina" >>                                                               ${AUTOSTART_DIR}/catalina.desktop
+        echo "Comment=Catalina Dynamic Wallpaper" >>                                          ${AUTOSTART_DIR}/catalina.desktop
+        echo "Exec=/home/${USER}/.config/autostart-scripts/catalina_dynamic" >>               ${AUTOSTART_DIR}/catalina.desktop
+        echo "Icon=wallpaper" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
+        echo "Terminal=false" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
+        echo "Hidden=false" >>                                                                ${AUTOSTART_DIR}/catalina.desktop
+        echo "NoDisplay=true" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
+        echo "StartupNotify=false" >>                                                         ${AUTOSTART_DIR}/catalina.desktop
+        echo "X-GNOME-Autostart-enabled=true" >>                                              ${AUTOSTART_DIR}/catalina.desktop
+    fi
+    
     # Start it.
     ${HOME}/bin/catalina --start
     echo -e "Installation complete. See \e[1m~/bin/catalina --help\e[0m for more information."
@@ -60,15 +57,11 @@ install_complete() {
 while [[ $# -gt 0 ]]; do
     case "${1}" in
         -k|--kde)
-            install_base
-            install_kde
-            install_complete
+            install_wallpaper kde
             exit 0
         ;;
         -d|--dde)
-            install_base
-            install_dde
-            install_complete
+            install_wallpaper dde
             exit 0
         ;;
         -h|--help)

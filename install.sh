@@ -44,7 +44,7 @@ install_dde() {
     echo "Comment=Catalina Dynamic Wallpaper" >>                                          ${AUTOSTART_DIR}/catalina.desktop
     echo "Exec=/home/${USER}/.config/autostart-scripts/catalina_dynamic" >>               ${AUTOSTART_DIR}/catalina.desktop
     echo "Icon=wallpaper" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
-    echo "Terminal=true" >>                                                               ${AUTOSTART_DIR}/catalina.desktop
+    echo "Terminal=false" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
     echo "Hidden=false" >>                                                                ${AUTOSTART_DIR}/catalina.desktop
     echo "NoDisplay=true" >>                                                              ${AUTOSTART_DIR}/catalina.desktop
     echo "StartupNotify=false" >>                                                         ${AUTOSTART_DIR}/catalina.desktop

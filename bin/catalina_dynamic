@@ -2,19 +2,20 @@
 
 ###
 # Catalina Dynamic Wallpaper autostart script.
-# https://github.com/caglarturali/catalina-dynamic-wallpaper-kde
+# https://github.com/caglarturali/catalina-dynamic-wallpaper
 ##
 
 # Base directory for images.
-_base_dir="${HOME}/.local/share/wallpapers/CatalinaDynamic/contents"
+BASE_DIR="${HOME}/.local/share/wallpapers/CatalinaDynamic/contents"
 
 # Keep looping.
 while true; do
-    _hour=$(date +%H)
-    if [[ "$_old_hour" != "$_hour" ]]; then
-        ~/bin/ksetwallpaper "$_base_dir/images/hourly/$_hour.jpg"
-        ln -fs "$_base_dir/images/hourly/$_hour.jpg" "$_base_dir/images/3840x3840.jpg"
+    hour=$(date +%H)
+    if [[ "$old_hour" != "$hour" ]]; then
+        # Create a symlink and set linked file as wallpaper.
+        ln -fs "$BASE_DIR/images/hourly/$hour.jpg" "$BASE_DIR/images/3840x3840.jpg"
+        ~/bin/setwallpaper "$BASE_DIR/images/3840x3840.jpg"
     fi
-    _old_hour=$_hour
+    old_hour=$hour
     sleep 1m
 done

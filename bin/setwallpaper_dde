@@ -1,0 +1,13 @@
+#!/bin/bash
+
+###
+# Sets wallpaper for DDE.
+##
+
+full_image_path=$(realpath "$1")
+
+# Exit if file does not exist.
+[ ! -f "$full_image_path" ] && { echo "File does not exist: $full_image_path"; exit 1; }
+
+# Set wallpaper.
+gsettings set com.deepin.wrap.gnome.desktop.background picture-uri "$full_image_path"

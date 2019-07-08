@@ -8,6 +8,9 @@
 full_image_path=$(realpath "$1")
 ext=$(file -b --mime-type "$full_image_path")
 
+# Exit if file does not exist.
+[ ! -f "$full_image_path" ] && { echo "File does not exist: $full_image_path"; exit 1; }
+
 if [ -z "$2" ]; then
     # Identify filetype and make changes.
     case $(echo $ext | cut -d'/' -f2) in

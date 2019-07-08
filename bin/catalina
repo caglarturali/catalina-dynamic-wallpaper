@@ -6,8 +6,9 @@ set -ueo pipefail
 # https://github.com/caglarturali/catalina-dynamic-wallpaper-kde
 ##
 
-_THEMES_DIR="${HOME}/.local/share/wallpapers"
-_AUTOSTART_DIR="${HOME}/.config/autostart-scripts"
+THEMES_DIR="${HOME}/.local/share/wallpapers"
+AUTOSTART_DIR="${HOME}/.config/autostart"
+AUTOSTART_SCRIPTS_DIR="${HOME}/.config/autostart-scripts"
 
 usage() {
     printf "%s\n" "Usage: $0 [OPTIONS...]"
@@ -19,34 +20,32 @@ usage() {
 }
 
 start () {
-    # Create autostart-scripts dir if not already exists.
-    ls $_AUTOSTART_DIR 2> /dev/null || mkdir -p $_AUTOSTART_DIR
-    
+    # Create autostart-scripts dir if it does not already exist.
+    [ ! -d ${AUTOSTART_SCRIPTS_DIR} ] && mkdir -p ${AUTOSTART_SCRIPTS_DIR}
     # Create a symlink under autostart-scripts.
-    ln -sf ${HOME}/bin/catalina_dynamic $_AUTOSTART_DIR
-    
+    ln -sf ${HOME}/bin/catalina_dynamic ${AUTOSTART_SCRIPTS_DIR}
     # Run for the first time.
-    $_AUTOSTART_DIR/catalina_dynamic &
-    
+    ${AUTOSTART_SCRIPTS_DIR}/catalina_dynamic &
     echo "Dynamic wallpaper started."
 }
 
 stop () {
     # Stop process.
     ps -C catalina_dynamic >/dev/null && killall catalina_dynamic
-    
     # Remove symlink.
-    rm -f $_AUTOSTART_DIR/catalina_dynamic
-    
+    rm -f ${AUTOSTART_SCRIPTS_DIR}/catalina_dynamic
     echo "Dynamic wallpaper stopped. You can set your own wallpaper now."
 }
 
 uninstall () {
     stop
-    rm -r $_THEMES_DIR/CatalinaDynamic
+    rm -r $THEMES_DIR/CatalinaDynamic
+    # Remove autostart shortcut if there is one.
+    rm -f ${AUTOSTART_DIR}/catalina.desktop
+    # Remove scripts.
     rm ${HOME}/bin/catalina
     rm ${HOME}/bin/catalina_dynamic
-    # Leave ksetwallpaper.
+    rm ${HOME}/bin/setwallpaper
     echo "Dynamic wallpaper removed. Are you happy now? :("
 }
 

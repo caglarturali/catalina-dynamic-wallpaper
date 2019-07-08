@@ -8,11 +8,16 @@ Simple, time-based, macOS style dynamic wallpaper that transitions between the d
 
 ### Installation
 
-```bash
-git clone https://github.com/caglarturali/catalina-dynamic-wallpaper-kde.git
-cd catalina-dynamic-wallpaper-kde
-./install.sh
-```
+- Clone the repo.
+
+  ```bash
+  git clone https://github.com/caglarturali/catalina-dynamic-wallpaper.git
+  cd catalina-dynamic-wallpaper
+  ```
+
+- Install.
+  - `./install --kde` or `-k` on KDE Plasma 5
+  - `./install --dde` or `-d` on DDE
 
 ### Usage
 
@@ -24,6 +29,10 @@ You can control the wallpaper through control script. `~/bin/catalina` **[OPTION
 | -p, --stop      | Stop dynamic wallpaper.                                 |
 | -u, --uninstall | Uninstall dynamic wallpaper. Removes all related files. |
 | -h, --help      | Show this help.                                         |
+
+### Notes
+
+- On DDE, it only sets the desktop background. You need to set the lock screen background manually, for now.
 
 ### Credits :blush:
 

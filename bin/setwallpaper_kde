@@ -32,7 +32,10 @@ for (i=0;i<Desktops.length;i++)
     d.currentConfigGroup = Array('Wallpaper', '${type}', 'General');
     d.writeConfig('Image', 'file:///dev/null')
     d.writeConfig('$write', 'file://${full_image_path}')
+    d.writeConfig('FillMode', 2)
 }"
+
+pid=$(pgrep -xn plasmashell) && export DBUS_SESSION_BUS_ADDRESS="$(grep -ao -m1 -P '(?<=DBUS_SESSION_BUS_ADDRESS=).*?\0' /proc/"$pid"/environ)"
 
 # Set wallpaper.
 qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "${wallpaper_set_script}"
